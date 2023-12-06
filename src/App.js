@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Form } from "./Form";
+import "./App.css";
+import { useState } from "react";
+import { TodoCard } from "./TodoCard";
+import { TodoView } from "./TodoView";
 
 function App() {
+  const [content, setContent] = useState([]);
+  const [title, setTitle] = useState("");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="TodoBox">
+        <h1 className="TodoTitle">Todo</h1>
+        <button className="AddTodoButton" onClick={() => setTitle("")}>
+          新規追加
+        </button>
+        {content.map((item, index) => {
+          return (
+            <TodoCard
+              item={item}
+              index={index}
+              setContent={setContent}
+              setTitle={setTitle}
+            />
+          );
+        })}
+      </div>
+      <div className="MainBox">
+        {title === "" ? (
+          <Form content={content} setContent={setContent} />
+        ) : (
+          <TodoView title={title} />
+        )}
+      </div>
     </div>
   );
 }
