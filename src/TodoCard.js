@@ -7,8 +7,9 @@ export const TodoCard = ({ item, index, setContent, setTitle }) => {
         setTitle(item);
       }}
     >
-      <p>{item}</p>
+      <p style={{ marginLeft: "10px" }}>{item}</p>
       <button
+        style={{ marginRight: "10px" }}
         className="TodoCard-Button"
         onClick={() => {
           setContent((prevContent) => {
